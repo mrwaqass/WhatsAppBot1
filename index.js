@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 let url = 'https://web.whatsapp.com/'
-let target = 'Umair brother' //exact contact name from chat
+let target = 'Waqas Jazz 1' //exact contact name from chat
 
 const start = async (url, target) => {
     const browser = await puppeteer.launch({
@@ -33,11 +33,23 @@ const start = async (url, target) => {
         '🤖🤖🤖',
         '🤡🤡🤡',
     ]
-    for (let i = 0; i < 150; i++) {
-        let message = messages[Math.floor(Math.random() * messages.length)]
-        await input.type(message)
-        await page.keyboard.press('Enter')
+    const wait = time => new Promise(resolve => setTimeout(resolve, time))
+
+    const sendMessages = async () => {
+        for (const a of [...Array(30)]) {
+            let message = messages[Math.floor(Math.random() * messages.length)]
+            await input.type(message)
+            await page.keyboard.press('Enter')
+            await wait(5000)
+        }
     }
+    sendMessages()
+
+    // for (let i = 0; i < 30; i++) {
+    //     let message = messages[Math.floor(Math.random() * messages.length)]
+    //     await input.type(message)
+    //     await page.keyboard.press('Enter')
+    // }
 
     // await browser.close()
 }
